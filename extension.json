@@ -1,0 +1,62 @@
+{
+    "name": "laveroadmin/reporter",
+    "title": {
+        "en": "Exception Reporter",
+        "ru": "Репортер исключений"
+    },
+    "description": {
+        "en": "Catch, store, and inspect uncaught application exceptions with call traces and request details.",
+        "ru": "Автоматическая фиксация и трекинг непойманных исключений с трассировкой и метаданными запроса."
+    },
+    "category": "system",
+    "icon": "icon-bug",
+    "version": "1.0.0",
+    "author": {
+        "name": "Aleksandr Kireev",
+        "email": "hello@bespredel.name",
+        "url": "https://bespredel.name"
+    },
+    "github": "https://github.com/LaveroAdmin/reporter",
+    "setup": {
+        "commands": [
+            {
+                "cmd": "php artisan admin:import reporter",
+                "desc": {
+                    "en": "Import exception reporting database tables and menu item",
+                    "ru": "Импорт миграций таблицы исключений и меню"
+                }
+            }
+        ],
+        "config": {
+            "file": "config/admin.php",
+            "code": "'reporter' => [\n    'enable' => true,\n],"
+        },
+        "requirements": {
+            "en": [
+                "PHP >= 8.1"
+            ],
+            "ru": [
+                "PHP >= 8.1"
+            ]
+        },
+        "notes": {
+            "en": [
+                "To report exceptions, add to your exception handler (bootstrap/app.php or app/Exceptions/Handler.php):",
+                "\\LaveroAdmin\\Admin\\Reporter\\Reporter::report($exception);"
+            ],
+            "ru": [
+                "Для сохранения ошибок добавьте в обработчик исключений (bootstrap/app.php или app/Exceptions/Handler.php):",
+                "\\LaveroAdmin\\Admin\\Reporter\\Reporter::report($exception);"
+            ]
+        }
+    },
+    "key": "reporter",
+    "compatibility": {
+        "php": ">=8.1",
+        "laravel": "^10.0 || ^11.0 || ^12.0 || ^13.0",
+        "admin": "^1.0",
+        "extensions": [
+            "pdo"
+        ]
+    }
+}

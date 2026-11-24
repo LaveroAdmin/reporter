@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'exceptions'       => 'Исключения',
+    'exceptions_list'  => 'Список исключений',
+    'request_details'  => 'Детали запроса',
+    'request'          => 'Запрос',
+    'trace'            => 'Трассировка',
+    'frames'           => 'Стек вызовов (Frames)',
+    'headers'          => 'Заголовки (Headers)',
+    'cookies'          => 'Cookies',
+    'session'          => 'Сессия (Session)',
+    'environment'      => 'Окружение (Environment)',
+    'message'          => 'Сообщение',
+    'type'             => 'Тип',
+    'file'             => 'Файл',
+    'line'             => 'Строка',
+    'time'             => 'Время',
+    'method'           => 'Метод',
+    'url'              => 'URL',
+    'query'            => 'Параметры запроса',
+    'body'             => 'Тело запроса',
+    'client_ip'        => 'IP клиента',
+    'exception'        => 'Исключение',
+    'code'             => 'Код ошибки',
+    'in'               => 'в',
+    'at_line'          => 'на строке',
+];

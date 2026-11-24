@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'exceptions'       => 'Exceptions',
+    'exceptions_list'  => 'Exception list',
+    'request_details'  => 'Request details',
+    'request'          => 'Request',
+    'trace'            => 'Trace',
+    'frames'           => 'Frames',
+    'headers'          => 'Headers',
+    'cookies'          => 'Cookies',
+    'session'          => 'Session',
+    'environment'      => 'Environment',
+    'message'          => 'Message',
+    'type'             => 'Type',
+    'file'             => 'File',
+    'line'             => 'Line',
+    'time'             => 'Time',
+    'method'           => 'Method',
+    'url'              => 'URL',
+    'query'            => 'Query',
+    'body'             => 'Body',
+    'client_ip'        => 'Client IP',
+    'exception'        => 'Exception',
+    'code'             => 'Code',
+    'in'               => 'in',
+    'at_line'          => 'at line',
+];

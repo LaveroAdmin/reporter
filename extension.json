@@ -10,7 +10,7 @@
     },
     "category": "system",
     "icon": "icon-bug",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": {
         "name": "Aleksandr Kireev",
         "email": "hello@bespredel.name",
@@ -20,10 +20,17 @@
     "setup": {
         "commands": [
             {
+                "cmd": "php artisan migrate",
+                "desc": {
+                    "en": "Create the laravel_exceptions database table",
+                    "ru": "Создание таблицы laravel_exceptions в базе данных"
+                }
+            },
+            {
                 "cmd": "php artisan admin:import reporter",
                 "desc": {
-                    "en": "Import exception reporting database tables and menu item",
-                    "ru": "Импорт миграций таблицы исключений и меню"
+                    "en": "Import exception reporting menu item and permissions",
+                    "ru": "Импорт пункта меню и прав доступа отчётов об ошибках"
                 }
             }
         ],

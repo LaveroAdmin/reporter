@@ -43,20 +43,22 @@ class CreateExceptionsTable extends Migration
 
         Schema::connection($connection)->create($table, function (Blueprint $table) {
             $table->increments('id');
-            $table->string('type', 255);
+            $table->string('type', 255)->index();
             $table->string('code');
             $table->string('message', 255);
             $table->string('file', 255);
             $table->integer('line');
             $table->text('trace');
-            $table->string('method');
+            $table->string('method', 16)->index();
             $table->string('path', 255);
             $table->text('query');
             $table->text('body');
             $table->text('cookies');
             $table->text('headers');
-            $table->string('ip');
+            $table->string('ip', 45)->nullable()->index();
             $table->timestamps();
+
+            $table->index('created_at');
         });
     }
 

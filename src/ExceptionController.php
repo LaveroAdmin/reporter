@@ -38,8 +38,18 @@ class ExceptionController
 
             $grid->column('type', trans('lavero-admin-reporter::reporter.type'))->display(function ($type) {
                 $path = explode('\\', $type);
+                $short = array_pop($path);
+                $occ = (int) ($this->occurrences ?? 1);
+                $badge = $occ > 1 ? " <span class=\"badge bg-danger ms-1\">&times;{$occ}</span>" : '';
 
-                return array_pop($path);
+                return htmlspecialchars($short) . $badge;
+            });
+
+            $grid->column('status', 'Status')->display(function ($status) {
+                $status = $status ?: 'open';
+                $colors = ['open' => 'danger', 'resolved' => 'success', 'ignored' => 'secondary'];
+                $c = $colors[$status] ?? 'secondary';
+                return "<span class=\"badge bg-{$c}\">" . strtoupper($status) . "</span>";
             });
 
             $grid->code();
@@ -76,6 +86,7 @@ class ExceptionController
 
             $grid->filter(function ($filter) {
                 $filter->disableIdFilter();
+                $filter->equal('status', 'Status')->select(['open' => 'Open', 'resolved' => 'Resolved', 'ignored' => 'Ignored']);
                 $filter->like('type', trans('lavero-admin-reporter::reporter.type'));
                 $filter->like('message', trans('lavero-admin-reporter::reporter.message'));
                 $filter->between('created_at', trans('lavero-admin-reporter::reporter.time'))->datetime();
@@ -110,6 +121,28 @@ class ExceptionController
 
             $content->body($view);
         });
+    }
+
+    public function updateStatus(\Illuminate\Http\Request $request, $id): \Illuminate\Http\RedirectResponse
+    {
+        $status = (string) $request->input('status', 'resolved');
+        if (!in_array($status, ['open', 'resolved', 'ignored'], true)) {
+            $status = 'resolved';
+        }
+
+        $model = ExceptionModel::findOrFail($id);
+        $model->status = $status;
+        $model->save();
+
+        admin_toastr("Status updated to {$status}", 'success');
+        return back();
+    }
+
+    public function clearResolved(): \Illuminate\Http\RedirectResponse
+    {
+        ExceptionModel::query()->whereIn('status', ['resolved', 'ignored'])->delete();
+        admin_toastr('Resolved exceptions cleared.', 'success');
+        return back();
     }
 
     public function destroy($id): JsonResponse
